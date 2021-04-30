@@ -17,11 +17,10 @@ function resizeCanvas(){
     flock.members.forEach(agent => agent.resize(canvas.width, canvas.height));
 }
 
-flock.populate(5); //instantiates agents
+flock.populate(500); //instantiates agents
+flock.members.forEach(agent => agent.resize(canvas.width, canvas.height));
 
 flock.draw(ctx);
-
-let frameID = 0;
 
 function mainLoop(timestamp){
 
@@ -31,12 +30,10 @@ function mainLoop(timestamp){
     ctx.fillStyle = "#2C2F33";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    if(dt && frameID < 3){
+    if(dt){
         flock.update(dt);
         flock.draw(ctx);
     }
-
-    frameID++;
 
     requestAnimationFrame(mainLoop);
 }
